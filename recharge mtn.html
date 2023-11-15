@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <label for="">Network Provider</label>
+        <select name="" id="network">
+            <option value="MTN">MTN</option>
+        </select>
+        <label for="">Amount</label>
+        <select name="" id="amount">
+            <option value="100">100</option>
+        </select>
+
+        <button onclick="genPin()">Generate Pin</button>
+        <h1 id="dispPin"></h1>
+
+        <h1>Load Airtime</h1>
+        <input type="text" id="LoadAirtime">
+        <button onclick="LoadAirtimeCard()">LoadAirtime</button>
+        <p>Load airtime using *311* the generated code #</p>
+        <h1 id="dev"></h1>
+    </main>
+</body>
+</html>
+
+<script>
+    let amount = document.getElementById("amount");
+    let network = document.getElementById("network");
+    let LoadAirtime = document.getElementById("LoadAirtime");
+
+    function genPin(){
+        let pin = "";
+            for (let i = 0; i < 15; i++) {
+                    pin += Math.floor(Math.random() * 10);
+                }
+        dispPin.innerHTML = pin
+
+        alert(`You have generated ${network.value} of ${amount.value}`)
+    }
+
+    function LoadAirtimeCard(){
+        let pin = document.getElementById("dispPin").innerHTML
+        if(!LoadAirtime.value.startsWith("*311") || !LoadAirtime.value.endsWith("#") || !LoadAirtime.value.includes(pin)){
+            alert("Invalid Code")
+        }else{
+            alert(`You have recharged ${network.value} of ${amount.value}`)
+        }
+    }
+
+</script> 
